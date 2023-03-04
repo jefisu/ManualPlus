@@ -1,0 +1,198 @@
+{
+  ConstraintSets: {
+    start: {
+      content: {
+        width: 'spread',
+        height: 'spread',
+        top: ['parent', 'top', 130],
+        bottom: ['parent', 'bottom'],
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        translationZ: 0,
+        custom: {
+          corner: 150
+        }
+      },
+      navigation_icon: {
+        width: 'wrap',
+        height: 'wrap',
+        start: ['parent', 'start', 8],
+        top: ['parent', 'top', 4],
+        translationZ: 0.1,
+        custom: {
+          icon_color: '#252033'
+        }
+      },
+      image: {
+        width: 150,
+        height: 217,
+        start: ['parent','start',24],
+        top: ['navigation_icon','top', 50],
+        translationZ: 0.1,
+      },
+      equipment_name: {
+        width: 'wrap',
+        height: 'wrap',
+        top: ['image', 'top', 8],
+        start: ['image', 'end', 16],
+        translationZ: 0.1,
+        custom: {
+          fontSize: 18,
+          textColor: '#252033'
+        }
+      },
+      equipment_serie: {
+        width: 'wrap',
+        height: 'wrap',
+        start: ['image', 'end', 16],
+        top: ['equipment_name', 'bottom', 12],
+        translationZ: 0.1
+      },
+      equipment_description: {
+        width: 'spread',
+        height: 'wrap',
+        start: ['image', 'end', 16],
+        end: ['parent', 'end', 16],
+        top: ['equipment_serie', 'bottom', 16],
+        bottom: ['image', 'bottom', 12],
+        translationZ: 0.1
+      },
+      text_setup_aux: {
+        width: 'wrap',
+        height: 'wrap',
+        start: ['parent', 'start', 20],
+        top: ['image', 'bottom', 16],
+        translationZ: 0.1,
+      },
+      steps: {
+        width: 'spread',
+        height: 'spread',
+        start: ['parent', 'start', 20],
+        end: ['parent', 'end', 16],
+        top: ['text_setup_aux', 'bottom', 8],
+        bottom: ['see_more', 'bottom'],
+        translationZ: 0.1
+      },
+      see_more: {
+        width: 'wrap',
+        height: 'wrap',
+        bottom: ['parent', 'bottom', 12],
+        centerHorizontally: 'parent',
+        translationZ: 0.1
+      },
+      arrow_down: {
+        width: 'wrap',
+        height: 'wrap'
+      }
+    },
+    end: {
+      content: {
+        width: '100%',
+        height: '100%',
+        translationZ: 0.1,
+        custom: {
+          corner: 0
+        },
+      },
+      navigation_icon: {
+        width: 'wrap',
+        height: 'wrap',
+        start: ['parent', 'start', 8],
+        top: ['parent', 'top', 4],
+        translationZ: 0.1,
+        custom: {
+          icon_color: '#FFFFFF'
+        }
+      },
+      image: {
+        width: 150,
+        height: 217,
+        start: ['parent','start',24],
+        top: ['navigation_icon','top', 50],
+        translationZ: 0
+      },
+      equipment_name: {
+        width: 95,
+        height: 'wrap',
+        top: ['parent', 'top', 8],
+        centerHorizontally: 'parent',
+        translationZ: 0.1,
+        custom: {
+          fontSize: 22,
+          textColor: '#FFFFFF'
+        }
+      },
+      equipment_serie: {
+        width: 'wrap',
+        height: 'wrap',
+        start: ['image', 'end', 16],
+        top: ['equipment_name', 'bottom', 12],
+        translationZ: 0
+      },
+      equipment_description: {
+        width: 'spread',
+        height: 'wrap',
+        start: ['image', 'end', 16],
+        end: ['parent', 'end', 16],
+        top: ['equipment_serie', 'bottom', 16],
+        bottom: ['image', 'bottom', 12],
+        translationZ: 0
+      },
+      text_setup_aux: {
+        width: 'wrap',
+        height: 'wrap',
+        start: ['parent', 'start', 20],
+        top: ['navigation_icon', 'bottom', 12],
+        translationZ: 0.1
+      },
+      steps: {
+        width: 'spread',
+        height: 'spread',
+        start: ['parent', 'start', 20],
+        end: ['parent', 'end', 16],
+        top: ['text_setup_aux', 'bottom', 8],
+        bottom: ['see_more', 'top', 8],
+        translationZ: 0.1
+      },
+      see_more: {
+        width: 'wrap',
+        height: 'wrap',
+        bottom: ['parent', 'bottom', 12],
+        centerHorizontally: 'parent',
+        translationZ: 0.1
+      },
+      arrow_down: {
+        width: 'wrap',
+        height: 'wrap'
+      }
+    }
+  },
+  Transitions: {
+    default : {
+      from: 'start',
+      to : 'end',
+      KeyFrames: {
+        KeyPositions: [
+          {
+            target: ['image'],
+            frames: [50],
+            percentX: [0.0],
+            percentY: [-0.30]
+          },
+          {
+            target: ['equipment_serie','equipment_description'],
+            frames: [50],
+            percentY: [-0.30]
+          }
+        ],
+        KeyAttributes: [
+          {
+            target: ['image'],
+            frames: [50],
+            rotationZ: [55]
+          }
+        ]
+      }
+    }
+  }
+}
