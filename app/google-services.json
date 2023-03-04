@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "481468637662",
+    "project_id": "manualplus-379215",
+    "storage_bucket": "manualplus-379215.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481468637662:android:665c96380514b962797d4f",
+        "android_client_info": {
+          "package_name": "com.jefisu.manualplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481468637662-3g9t8t26eu1895fb8d1uubdonvu3mrhb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jefisu.manualplus",
+            "certificate_hash": "03facd9c8a83f02ce796cc1dc03eff74a0173c54"
+          }
+        },
+        {
+          "client_id": "481468637662-ht0p33ru8aek7mm03gj5loi3uj45187k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAEDt0So1JKuoUsblGrMCtQyC5xda5v2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481468637662-ht0p33ru8aek7mm03gj5loi3uj45187k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
