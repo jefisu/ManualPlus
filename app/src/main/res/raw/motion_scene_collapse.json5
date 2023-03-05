@@ -77,12 +77,8 @@
         width: 'wrap',
         height: 'wrap',
         bottom: ['parent', 'bottom', 12],
-        centerHorizontally: 'parent',
+        end: ['parent', 'end', 12],
         translationZ: 0.1
-      },
-      arrow_down: {
-        width: 'wrap',
-        height: 'wrap'
       }
     },
     end: {
@@ -151,19 +147,15 @@
         start: ['parent', 'start', 20],
         end: ['parent', 'end', 16],
         top: ['text_setup_aux', 'bottom', 8],
-        bottom: ['see_more', 'top', 8],
+        bottom: ['parent', 'bottom'],
         translationZ: 0.1
       },
       see_more: {
         width: 'wrap',
         height: 'wrap',
-        bottom: ['parent', 'bottom', 12],
-        centerHorizontally: 'parent',
+        centerVertically: 'text_setup_aux',
+        end: ['parent', 'end', 12],
         translationZ: 0.1
-      },
-      arrow_down: {
-        width: 'wrap',
-        height: 'wrap'
       }
     }
   },
@@ -183,6 +175,11 @@
             target: ['equipment_serie','equipment_description'],
             frames: [50],
             percentY: [-0.30]
+          },
+          {
+            target: ['see_more'],
+            frames: [10],
+            percentX: [1.25]
           }
         ],
         KeyAttributes: [
@@ -190,6 +187,11 @@
             target: ['image'],
             frames: [50],
             rotationZ: [55]
+          },
+          {
+            target: ['see_more'],
+            frames: [10],
+            rotationZ: [90]
           }
         ]
       }

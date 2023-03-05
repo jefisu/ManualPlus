@@ -1,11 +1,13 @@
 package com.jefisu.manualplus.features_manual.presentation.detail.components
 
+import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,6 +31,13 @@ fun ListSteps(
 ) {
     val heightText = 30.dp
     val space = 20.dp
+    val lazyState = rememberLazyListState()
+
+    LaunchedEffect(key1 = showAllList) {
+        if (!showAllList && lazyState.firstVisibleItemIndex != 0) {
+            lazyState.animateScrollToItem(0)
+        }
+    }
 
     BoxWithConstraints(modifier = modifier) {
         val numberStepVisible = remember(maxHeight) {
@@ -45,7 +54,8 @@ fun ListSteps(
 
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(space),
-            userScrollEnabled = showAllList
+            userScrollEnabled = showAllList,
+            state = lazyState
         ) {
             val stepsVisible = steps.take(numberStepVisible)
             itemsIndexed(stepsVisible) { index, step ->

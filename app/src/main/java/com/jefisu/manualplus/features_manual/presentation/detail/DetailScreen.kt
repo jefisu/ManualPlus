@@ -1,17 +1,14 @@
 package com.jefisu.manualplus.features_manual.presentation.detail
 
 import android.net.Uri
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -20,7 +17,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +44,7 @@ import com.jefisu.manualplus.features_manual.domain.Equipment
 import com.jefisu.manualplus.features_manual.presentation.detail.components.ListSteps
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 
 @OptIn(ExperimentalMotionApi::class)
@@ -100,27 +98,28 @@ fun DetailScreen(
                 tint = navigationIconProp.color("icon_color")
             )
         }
-        GlideImage(
-            imageModel = { imageEquipment },
-            failure = {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .matchParentSize()
-                        .background(Color(0xFFC9C9C9))
-                ) {
+        Box(
+            modifier = Modifier.layoutId("image")
+        ) {
+            GlideImage(
+                imageModel = { imageEquipment },
+                failure = {
                     Text(
                         text = "No image",
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        fontSize = 20.sp,
+                        modifier = Modifier.align(Alignment.Center)
                     )
-                }
-            },
-            modifier = Modifier
-                .layoutId("image")
-                .clip(RoundedCornerShape(8.dp))
-        )
+                },
+                imageOptions = ImageOptions(
+                    contentScale = ContentScale.Fit
+                ),
+                modifier = Modifier
+                    .padding(MaterialTheme.spacing.small)
+                    .matchParentSize()
+            )
+        }
         Text(
             text = equipment.name,
             fontSize = equipmentNameProp.fontSize("fontSize"),
@@ -148,34 +147,24 @@ fun DetailScreen(
             color = Color.White,
             modifier = Modifier.layoutId("text_setup_aux")
         )
-
         ListSteps(
             steps = equipment.steps,
             showAllList = animateToEnd,
             stepsNotDisplayed = { showSeeMore = it || animateToEnd }
         )
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .layoutId("see_more")
-                .padding(horizontal = MaterialTheme.spacing.extraSmall)
-                .clickable(
-                    enabled = showSeeMore,
-                    onClick = { animateToEnd = !animateToEnd }
-                )
+        Box(
+            modifier = Modifier.layoutId("see_more")
         ) {
             if (showSeeMore) {
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowDown,
-                    contentDescription = null,
-                    modifier = Modifier.layoutId("arrow_down")
-                )
-                Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
                 Text(
                     text = if (animateToEnd) "See less" else "See more",
-                    fontSize = 12.sp
+                    fontSize = 14.sp,
+                    modifier = Modifier
+
+                        .clip(RoundedCornerShape(8.dp))
+                        .clickable { animateToEnd = !animateToEnd }
+                        .padding(6.dp)
+                        .animateContentSize()
                 )
             }
         }
