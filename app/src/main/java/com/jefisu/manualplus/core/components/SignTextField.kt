@@ -24,6 +24,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.jefisu.manualplus.R
 import com.jefisu.manualplus.core.ui.theme.md_theme_light_outline
 import com.jefisu.manualplus.core.ui.theme.md_theme_light_surfaceVariant
@@ -138,6 +139,7 @@ fun SignTextField(
             Text(
                 text = error,
                 color = Color.Red,
+                fontSize = 12.sp,
                 modifier = Modifier.align(Alignment.End)
             )
         }
