@@ -34,15 +34,14 @@ class ManualRepositoryImpl(
         }
     }
 
-    override fun getEquipments(): Flow<Resource<List<Equipment>>> {
+    override fun getCategories(): Flow<Resource<List<String>>> {
         return try {
             realm
-                .query<EquipmentDto>()
-                .sort("name", Sort.ASCENDING)
+                .query<EquipmentDto>("category != $0 DISTINCT(category)", "")
                 .asFlow()
                 .map { result ->
                     Resource.Success(
-                        result.list.map { it.toEquipment() }
+                        result.list.map { it.category }
                     )
                 }
         } catch (_: Exception) {

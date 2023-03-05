@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,11 +26,10 @@ class HomeViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             repository.setUpRealm()
-            repository.getEquipments().collect { result ->
+            repository.getCategories().collect { result ->
                 if (result is Resource.Success) {
-                    Timber.d("categories ${result.data}")
                     val categories = Category.values().filter { category ->
-                        result.data!!.any { it.category == category.name }
+                        result.data!!.any { it == category.name }
                     }
                     _categories.update { categories }
                 }
