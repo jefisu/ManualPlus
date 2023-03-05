@@ -46,19 +46,26 @@ class CategoryViewModel @Inject constructor(
                 .downloadUrl
                 .addOnSuccessListener { uri ->
                     _state.update {
-                        it.copy(equipments = it.equipments + Pair(equipment, uri))
+                        it.copy(equipments = it.equipments + (equipment to uri))
                     }
                 }
-                .addOnFailureListener { exception ->
+                .addOnFailureListener { _ ->
                     _state.update {
-                        it.copy(equipments = it.equipments + Pair(equipment, null))
+                        it.copy(equipments = it.equipments + (equipment to null))
                     }
                 }
 
             if (equipment == equipments.last()) {
                 viewModelScope.launch {
                     delay(1000)
-                    _state.update { it.copy(isLoading = false) }
+                    _state.update { state ->
+                        state.copy(
+                            equipments = state.equipments.sortedBy {
+                                it.first.name.lowercase().take(1)
+                            },
+                            isLoading = false
+                        )
+                    }
                 }
             }
         }
