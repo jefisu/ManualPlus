@@ -150,7 +150,8 @@ fun DetailScreen(
         ListSteps(
             steps = equipment.steps,
             showAllList = animateToEnd,
-            stepsNotDisplayed = { showSeeMore = it || animateToEnd }
+            stepsNotDisplayed = { showSeeMore = it || animateToEnd },
+            modifier = Modifier.layoutId("steps"),
         )
         Box(
             modifier = Modifier.layoutId("see_more")
